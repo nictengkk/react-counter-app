@@ -1,43 +1,43 @@
 import React, { Component } from "react";
-import { counters } from "./../../sampleData";
+// import { counters } from "./../../sampleData";
 import Counter from "../Counter/Counter";
 
 class Counters extends Component {
-  state = { counters };
+  //   state = { counters };
 
-  settingState = (counterId, operator) => {
-    const copy = [...this.state.counters];
-    copy.find(element => element.id === counterId).value += operator;
-    this.setState({ counters: copy });
-  };
+  //   settingState = (counterId, operator) => {
+  //     const copy = [...this.state.counters];
+  //     copy.find(element => element.id === counterId).value += operator;
+  //     this.setState({ counters: copy });
+  //   };
 
-  handleIncrement = counterId => {
-    this.settingState(counterId, 1);
-  };
+  //   handleIncrement = counterId => {
+  //     this.settingState(counterId, 1);
+  //   };
 
-  handleDecrement = counterId => {
-    this.settingState(counterId, -1);
-  };
+  //   handleDecrement = counterId => {
+  //     this.settingState(counterId, -1);
+  //   };
 
-  handleDelete = counterId => {
-    const filteredData = this.state.counters.filter(
-      counter => counter.id !== counterId
-    );
-    this.setState({ counters: filteredData });
-  };
+  //   handleDelete = counterId => {
+  //     const filteredData = this.state.counters.filter(
+  //       counter => counter.id !== counterId
+  //     );
+  //     this.setState({ counters: filteredData });
+  //   };
 
-  handleReset = () => {
-    const copy = [...this.state.counters];
-    const updatedCopy = copy.map(counter => {
-      counter.value = 0;
-      return counter;
-    });
-    this.setState({ counters: updatedCopy });
-    console.log("Reset was pressed!");
-  };
+  //   handleReset = () => {
+  //     const copy = [...this.state.counters];
+  //     const updatedCopy = copy.map(counter => {
+  //       counter.value = 0;
+  //       return counter;
+  //     });
+  //     this.setState({ counters: updatedCopy });
+  //     console.log("Reset was pressed!");
+  //   };
 
   renderCounters = () => {
-    const { counters } = this.state;
+    const { counters } = this.props;
     const isEmpty = counters.length === 0;
     return (
       <div>
@@ -47,9 +47,9 @@ class Counters extends Component {
             key={counter.id}
             value={counter.value}
             id={counter.id}
-            handleDelete={this.handleDelete}
-            handleIncrement={this.handleIncrement}
-            handleDecrement={this.handleDecrement}
+            handleDelete={this.props.handleDelete}
+            handleIncrement={this.props.handleIncrement}
+            handleDecrement={this.props.handleDecrement}
           />
         ))}
       </div>
@@ -60,7 +60,7 @@ class Counters extends Component {
     return (
       <div>
         {this.renderCounters()}
-        <button className="btn btn-dark ml-3" onClick={this.handleReset}>
+        <button className="btn btn-dark ml-3" onClick={this.props.handleReset}>
           Reset All
         </button>
       </div>
