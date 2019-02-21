@@ -4,8 +4,8 @@ function Total(props) {
   const { counters, totalCount } = props;
   return (
     <React.Fragment>
-      <div>Total Number of Counters : {counters}</div>
-      <div>Total Count : {totalCount}</div>
+      <div className="ml-3">Total Number of Counters : {counters}</div>
+      <div className="ml-3">Total Count : {totalCount}</div>
     </React.Fragment>
   );
 }

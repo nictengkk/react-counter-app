@@ -34,7 +34,6 @@ export class App extends Component {
       return counter;
     });
     this.setState({ counters: updatedCopy });
-    console.log("Reset was pressed!");
   };
 
   render() {
@@ -43,7 +42,7 @@ export class App extends Component {
     }, 0);
     return (
       <div>
-        <h1>Counter Lab</h1>
+        <h1 className="ml-3">Counter Lab</h1>
         <Counters
           counters={this.state.counters}
           handleDecrement={this.handleDecrement}
