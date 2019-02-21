@@ -13,10 +13,12 @@ export class Counters extends Component {
     this.setState({ counters: filteredData });
   };
 
-  render() {
+  renderCounters = () => {
     const { counters } = this.state;
+    const isEmpty = counters.length === 0;
     return (
       <div>
+        {isEmpty && <h1>No More Counters!</h1>}
         {counters.map(counter => (
           <Counter
             key={counter.id}
@@ -27,7 +29,30 @@ export class Counters extends Component {
         ))}
       </div>
     );
+  };
+
+  render() {
+    return this.renderCounters();
   }
 }
 
 export default Counters;
+
+// Tenary operators for condition
+// renderCounterss = () => {
+//     const { counters } = this.state;
+//     return this.state.counters.length === 0 ? (
+//         <h1>No More Counters</h1>
+//     ) : (
+//             <div>
+//                 {counters.map(counter => (
+//                     <Counter
+//                         key={counter.id}
+//                         value={counter.value}
+//                         id={counter.id}
+//                         handleDelete={this.handleDelete}
+//                     />
+//                 ))}
+//             </div>
+//         );
+// };
