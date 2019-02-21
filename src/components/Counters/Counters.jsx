@@ -1,16 +1,39 @@
 import React, { Component } from "react";
 import { counters } from "./../../sampleData";
-import { Counter } from "../Counter/Counter";
+import Counter from "../Counter/Counter";
 
-export class Counters extends Component {
+class Counters extends Component {
   state = { counters };
 
-  handleDelete = id => {
+  settingState = (counterId, operator) => {
+    const copy = [...this.state.counters];
+    copy.find(element => element.id === counterId).value += operator;
+    this.setState({ counters: copy });
+  };
+
+  handleIncrement = counterId => {
+    this.settingState(counterId, 1);
+  };
+
+  handleDecrement = counterId => {
+    this.settingState(counterId, -1);
+  };
+
+  handleDelete = counterId => {
     const filteredData = this.state.counters.filter(
-      counter => counter.id !== id
+      counter => counter.id !== counterId
     );
-    console.log(filteredData);
     this.setState({ counters: filteredData });
+  };
+
+  handleReset = () => {
+    const copy = [...this.state.counters];
+    const updatedCopy = copy.map(counter => {
+      counter.value = 0;
+      return counter;
+    });
+    this.setState({ counters: updatedCopy });
+    console.log("Reset was pressed!");
   };
 
   renderCounters = () => {
@@ -25,6 +48,8 @@ export class Counters extends Component {
             value={counter.value}
             id={counter.id}
             handleDelete={this.handleDelete}
+            handleIncrement={this.handleIncrement}
+            handleDecrement={this.handleDecrement}
           />
         ))}
       </div>
@@ -32,7 +57,14 @@ export class Counters extends Component {
   };
 
   render() {
-    return this.renderCounters();
+    return (
+      <div>
+        {this.renderCounters()}
+        <button className="btn btn-dark ml-3" onClick={this.handleReset}>
+          Reset All
+        </button>
+      </div>
+    );
   }
 }
 

@@ -1,27 +1,20 @@
 import React, { Component } from "react";
 
-export class Counter extends Component {
-  state = {
-    id: this.props.id,
-    value: this.props.value
-  };
-
-  handleIncrement = () => {
-    this.setState({ value: this.state.value + 1 });
-  };
-
-  handleDecrement = () => {
-    this.setState({ value: this.state.value - 1 });
-  };
-
+class Counter extends Component {
   render() {
     return (
       <div>
-        <button className={this.getBadgeClasses()}>{this.state.value}</button>
-        <button className="btn btn-success m-1" onClick={this.handleIncrement}>
+        <button className={this.getBadgeClasses()}>{this.props.value}</button>
+        <button
+          className="btn btn-success m-1"
+          onClick={() => this.props.handleIncrement(this.props.id)}
+        >
           +
         </button>
-        <button className="btn btn-danger m-1" onClick={this.handleDecrement}>
+        <button
+          className="btn btn-danger m-1"
+          onClick={() => this.props.handleDecrement(this.props.id)}
+        >
           -
         </button>
         <button
@@ -35,7 +28,7 @@ export class Counter extends Component {
   }
 
   getBadgeClasses = () => {
-    return this.state.value === 0
+    return this.props.value === 0
       ? "btn btn-warning mr-3 ml-3"
       : "btn btn-primary mr-3 ml-3";
   };
