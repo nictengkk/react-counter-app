@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 export class Counter extends Component {
   state = {
-    id: 1,
-    value: 0
+    id: this.props.id,
+    value: this.props.value
   };
 
   handleIncrement = () => {
@@ -17,11 +17,11 @@ export class Counter extends Component {
   render() {
     return (
       <div>
-        <span className={this.getBadgeClasses()}>{this.state.value}</span>
-        <button className="btn btn-primary" onClick={this.handleIncrement}>
+        <button className={this.getBadgeClasses()}>{this.state.value}</button>
+        <button className="btn btn-success m-1" onClick={this.handleIncrement}>
           +
         </button>
-        <button className="btn btn-danger" onClick={this.handleDecrement}>
+        <button className="btn btn-danger m-1" onClick={this.handleDecrement}>
           -
         </button>
       </div>
@@ -30,8 +30,8 @@ export class Counter extends Component {
 
   getBadgeClasses = () => {
     return this.state.value === 0
-      ? "badge badge-warning md mr-3 ml-3"
-      : "badge badge-primary md mr-3 ml-3";
+      ? "btn btn-warning mr-3 ml-3"
+      : "btn btn-primary mr-3 ml-3";
   };
 }
 
